@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+numpy
+pytz
+# Dodaj ovde svaku biblioteku koju koristi tvoj core kod
