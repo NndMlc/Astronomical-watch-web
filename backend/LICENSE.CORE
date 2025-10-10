@@ -1,0 +1,78 @@
+```
+Astronomical Watch Core License v1.0 (NO MODIFICATION LICENSE)
+
+Copyright (c) 2025 NndMlc
+All rights reserved.
+
+1. Definitions.
+   "Core" means the set of source files located under the path
+   src/astronomical_watch/core/ as listed verbatim in CORE_FILES.md at the time of distribution.
+
+   The protected Core now explicitly includes:
+   - __init__.py
+   - solar.py
+   - equinox.py
+   - timeframe.py
+   - timebase.py
+   - vsop87_earth.py
+   - nutation.py
+   - frames.py
+   - delta_t.py
+
+2. Grant of Permission.
+   You are permitted to (a) use and execute the Core; (b) copy and redistribute
+   exact, unmodified copies of the Core; (c) create and distribute separate
+   software that merely imports or calls the public APIs of the Core ("External Software").
+
+3. No Modification / No Derivative Works.
+   You may NOT modify, adapt, translate, reverse engineer (except to the limited
+   extent required by applicable law), or create derivative works of the Core.
+   Private experimental modifications are allowed solely for internal evaluation
+   and MUST NOT be redistributed in any form (except as permitted under Section 11).
+
+4. Patches Upstream.
+   If you wish to propose improvements, submit them as patches (e.g., pull requests)
+   to the original repository. Acceptance is at the sole discretion of the author.
+
+5. Trademark / Name.
+   You may not use the "Astronomical Watch" name, logo, or confusingly similar
+   marks to market modified versions or forks. Compliance with this License does
+   not grant trademark rights.
+
+6. Combination.
+   External Software combined with the unmodified Core remains outside the scope
+   of this License, but must not include copies of modified Core code.
+
+7. Disclaimer of Warranty.
+   THE CORE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+   PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+8. Limitation of Liability.
+   IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE CORE OR THE USE OR OTHER DEALINGS IN THE CORE.
+
+9. Termination.
+   Any breach (including unauthorized redistribution of modified Core) terminates
+   this License automatically. Upon termination you must cease distribution and
+   destroy copies under your control, except for compliance archives.
+
+10. Governing Law.
+    This License shall be governed by the laws of the jurisdiction of the Author's
+    residence unless otherwise required by applicable law.
+
+11. Security Exception.
+    Solely to remediate a documented, exploitable vulnerability (one that enables
+    incorrect code execution, denial of service, privilege escalation, or data corruption)
+    you may create and temporarily distribute a patched version of the Core provided that:
+      (a) The patch is the minimum necessary change.
+      (b) You notify the original project (public issue or designated security contact/email)
+          within 5 calendar days of first public distribution.
+      (c) You clearly and prominently mark the patched version as "UNOFFICIAL SECURITY PATCH"
+          including a diff or description of the change.
+      (d) You submit the patch upstream and cease distribution within 30 days unless the
+          patch (or an equivalent fix) is accepted upstream or the author grants written extension.
+    Any other modification or continued distribution outside these bounds remains prohibited.
+
+```
