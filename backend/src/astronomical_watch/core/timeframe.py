@@ -1,6 +1,6 @@
 """
 timeframe.py (Core)
-Convert UTC datetime into (day_index, milli_day) relative to vernal equinox frame.
+Convert UTC datetime into (dies, miliDies) relative to vernal equinox frame.
 License: Astronomical Watch Core License v1.0 (NO MODIFICATION). See LICENSE.CORE
 """
 from __future__ import annotations
@@ -36,16 +36,35 @@ def astronomical_time(dt: datetime) -> tuple[int, int]:
         eq = next_eq
         next_eq = compute_vernal_equinox(eq.year + 1)
     day0 = first_day_start_after_equinox(eq)
+
+    # Izračunaj podne na referentnom meridijanu za dati dan
+    def ref_noon(dt_):
+        return reference_noon_utc_for_day(dt_)
+
+    # Ako je trenutak pre prvog podneva nakon ekvinocija
     if dt < day0:
-        return (0, 0)
+        dies = 0
+        # miliDies se računa od poslednjeg podneva (pre dt)
+        # Pronađi poslednji podne na referentnom meridijanu
+        prev_noon = ref_noon(dt)
+        if dt < prev_noon:
+            prev_noon -= timedelta(days=1)
+        intra = (dt - prev_noon).total_seconds()
+        if intra < 0:
+            intra = 0
+        miliDies = int((intra / DAY_SECONDS) * 1000)
+        if miliDies > 999:
+            miliDies = 999
+        return dies, miliDies
+
+    # Nakon prvog podneva: dies = 1, 2, ...
     seconds_since_day0 = (dt - day0).total_seconds()
-    day_index = int(seconds_since_day0 // DAY_SECONDS)
-    current_day_start = day0 + timedelta(days=day_index)
+    dies = int(seconds_since_day0 // DAY_SECONDS) + 1
+    current_day_start = day0 + timedelta(days=dies - 1)
     intra = (dt - current_day_start).total_seconds()
     if intra < 0:
         intra = 0
-    milli_day = int((intra / DAY_SECONDS) * 1000)
-    if milli_day > 999:
-        milli_day = 999
-    return day_index, milli_day
-"""
+    miliDies = int((intra / DAY_SECONDS) * 1000)
+    if miliDies > 999:
+        miliDies = 999
+    return dies, miliDies

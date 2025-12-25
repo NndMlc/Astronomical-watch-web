@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timezone
 
 # Import core funkcionalnosti (prilagodi putanju ako treba)
-from core.timeframe import astronomical_time
+from astronomical_watch.core.timeframe import astronomical_time
 
 app = FastAPI(
     title="Astronomical Watch Backend",

@@ -5,13 +5,36 @@ License: Astronomical Watch Core License v1.0 (NO MODIFICATION). See LICENSE.COR
 """
 from __future__ import annotations
 from datetime import datetime, timedelta, timezone
-from .solar import to_julian_date, apparent_solar_longitude
+from typing import Optional
+from .solar import apparent_solar_longitude
+from .timebase import datetime_to_jd
 
-def compute_vernal_equinox(year: int, max_iter: int = 10, tol_seconds: float = 60.0) -> datetime:
+def compute_vernal_equinox(
+    year: int, 
+    max_iter: int = 10, 
+    tol_seconds: float = 10.0,
+    max_error_arcsec: Optional[float] = 1.0
+) -> datetime:
+    """
+    Compute vernal equinox instant for given year using VSOP87D and numerical iteration.
+    
+    Args:
+        year: Calendar year for equinox
+        max_iter: Maximum Newton-Raphson iterations (default: 10)
+        tol_seconds: Convergence tolerance in seconds (default: 10.0 for high precision)
+        max_error_arcsec: Maximum VSOP87D error in arcseconds (default: 1.0 for <1" accuracy)
+                         Set to None to use default truncated coefficients.
+    
+    Returns:
+        datetime: UTC instant of vernal equinox (apparent geocentric longitude = 0°)
+    """
     guess = datetime(year, 3, 20, 12, 0, 0, tzinfo=timezone.utc)
     def f(dt: datetime) -> float:
-        lam = apparent_solar_longitude(to_julian_date(dt))
-        diff = ((lam + 180) % 360) - 180
+        lam = apparent_solar_longitude(datetime_to_jd(dt), max_error_arcsec=max_error_arcsec)
+        # lam je u radijanima, konvertuj u stepene za lakše računanje
+        lam_deg = lam * 180.0 / 3.14159265359
+        # Vraća razliku od 0° (prolećna ravnodnevnica)
+        diff = ((lam_deg + 180) % 360) - 180
         return diff
     dt0 = guess
     step = timedelta(hours=6)
@@ -40,4 +63,3 @@ def compute_vernal_equinox(year: int, max_iter: int = 10, tol_seconds: float = 6
             return new_current
         current = new_current
     return current
-"""
