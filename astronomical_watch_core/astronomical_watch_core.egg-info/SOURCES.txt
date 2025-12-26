@@ -1,0 +1,10 @@
+README.md
+setup.py
+astronomical_watch_core.egg-info/PKG-INFO
+astronomical_watch_core.egg-info/SOURCES.txt
+astronomical_watch_core.egg-info/dependency_links.txt
+astronomical_watch_core.egg-info/not-zip-safe
+astronomical_watch_core.egg-info/top_level.txt
+core/__init__.py
+core/equinox.py
+core/timeframe.py

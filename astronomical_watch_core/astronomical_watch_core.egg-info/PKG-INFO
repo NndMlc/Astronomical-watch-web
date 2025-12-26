@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: astronomical_watch_core
+Version: 0.1.0
+Summary: Minimalni core za astronomsko vreme (Dies, miliDies, ekvinocijum)
+Author: NndMlc
+License: SEE LICENSE.CORE
+Requires-Python: >=3.8
+Dynamic: author
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
